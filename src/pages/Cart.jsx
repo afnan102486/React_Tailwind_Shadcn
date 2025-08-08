@@ -11,7 +11,7 @@ export default function Cart() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <div className="p-6 bg-indigo-700 text-white">
+          <div className="p-6 bg-violet-800 text-white">
             <h2 className="text-3xl font-bold">Your Shopping Cart</h2>
             <p className="mt-1 opacity-90">{cartItems.length} {cartItems.length === 1 ? 'item' : 'items'}</p>
           </div>
@@ -37,7 +37,7 @@ export default function Cart() {
               <div className="mt-6">
                 <a
                   href="/"
-                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-violet-700 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
                 >
                   Continue Shopping
                 </a>
@@ -113,14 +113,14 @@ export default function Cart() {
                 </div>
                 <p className="mt-1 text-sm text-gray-600">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
-                  <button className="w-full bg-indigo-600 border border-transparent rounded-md py-3 px-4 text-lg font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200">
+                  <button className="w-full bg-violet-600 border border-transparent rounded-md py-3 px-4 text-lg font-medium text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-colors duration-200">
                     Checkout
                   </button>
                 </div>
                 <div className="mt-4 flex justify-center">
                   <a
                     href="/"
-                    className="text-indigo-600 hover:text-indigo-500 font-medium flex items-center"
+                    className="text-violet-600 hover:text-violet-500 font-medium flex items-center"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>

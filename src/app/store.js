@@ -19,7 +19,6 @@ export const store = configureStore({
     getDefaultMiddleware().concat(productsApi.middleware),
 });
 
-// ✅ Subscribe to cart updates
 store.subscribe(() => {
   const state = store.getState();
   saveCartToLocalStorage(state.cart.items);
