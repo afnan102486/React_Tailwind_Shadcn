@@ -8,7 +8,7 @@ export default function Home() {
 
   if (isLoading) return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-violet-500"></div>
     </div>
   );
 
@@ -32,6 +32,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+
+
         {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -41,6 +43,7 @@ export default function Home() {
             Shop the latest collection of premium products
           </p>
         </div>
+
 
         {/* Search Bar */}
         <div className="mb-8 max-w-md mx-auto">
@@ -53,12 +56,14 @@ export default function Home() {
             <input
               type="text"
               placeholder="Search products..."
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 sm:text-sm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
         </div>
+
+
 
         {/* Products Grid */}
         {filteredProducts?.length === 0 ? (
@@ -76,7 +81,7 @@ export default function Home() {
             ))}
           </div>
         )}
-        
+
       </div>
     </div>
   );

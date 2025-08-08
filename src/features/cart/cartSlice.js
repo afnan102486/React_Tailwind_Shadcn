@@ -13,7 +13,7 @@ const getCartFromLocalStorage = () => {
 };
 
 const initialState = {
-  items: getCartFromLocalStorage(), // ✅ load from localStorage on first load
+  items: getCartFromLocalStorage(),
 };
 
 
@@ -26,11 +26,9 @@ const cartSlice = createSlice({
       const existingItem = state.items.find(item => item.id === product.id);
 
       if (existingItem) {
-        // ✅ If already in cart, increase quantity
         existingItem.quantity += 1;
         showToast(`${action.payload.title} quantity increased`, 'success');
       } else {
-        // ✅ If not in cart, add with quantity 1
         state.items.push({ ...product, quantity: 1 });
         showToast(`${action.payload.title} added to cart`, 'success');
       }
@@ -45,8 +43,6 @@ const cartSlice = createSlice({
   }
 },
 
-
-    // optional: decrement quantity or clear cart
     decrementQuantity: (state, action) => {
       const item = state.items.find(item => item.id === action.payload);
       if (item && item.quantity > 1) {
