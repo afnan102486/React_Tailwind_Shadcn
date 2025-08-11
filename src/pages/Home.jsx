@@ -1,27 +1,39 @@
 import { useGetProductsQuery } from '../features/products/productsApi';
 import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
+import { Box, Container, Typography, CircularProgress, Alert, AlertTitle, TextField } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 
 export default function Home() {
   const { data: products, error, isLoading } = useGetProductsQuery();
   const [searchTerm, setSearchTerm] = useState('');
 
   if (isLoading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-violet-500"></div>
-    </div>
+    <Box sx={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <CircularProgress color="primary" size={60} />
+    </Box>
   );
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="text-center p-6 max-w-md mx-auto bg-white rounded-xl shadow-md">
-        <svg className="mx-auto h-12 w-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-        <h3 className="mt-2 text-lg font-medium text-gray-900">Error loading products</h3>
-        <p className="mt-1 text-gray-500">We couldn't load the products. Please try again later.</p>
-      </div>
-    </div>
+    <Box sx={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      p: 2
+    }}>
+      <Alert severity="error" sx={{ maxWidth: 500 }}>
+        <AlertTitle>Error loading products</AlertTitle>
+        We couldn't load the products. Please try again later.
+      </Alert>
+    </Box>
   );
 
   const filteredProducts = products?.filter(product => 
@@ -30,59 +42,104 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-
-
+    <Box sx={{ 
+      minHeight: '100vh',
+      py: 8,
+      backgroundColor: 'background.default'
+    }}>
+      <Container maxWidth="xl">
         {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
+          <Typography 
+            variant="h3" 
+            component="h1"
+            sx={{
+              fontWeight: 'bold',
+              mb: 2,
+              fontSize: { xs: '2rem', sm: '3rem', lg: '3.5rem' }
+            }}
+          >
             Discover Amazing Products
-          </h1>
-          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+          </Typography>
+          <Typography 
+            variant="h6" 
+            component="p"
+            color="text.secondary"
+            sx={{ maxWidth: 600, mx: 'auto' }}
+          >
             Shop the latest collection of premium products
-          </p>
-        </div>
-
+          </Typography>
+        </Box>
 
         {/* Search Bar */}
-        <div className="mb-8 max-w-md mx-auto">
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-            </div>
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 sm:text-sm"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </div>
+        <Box sx={{ 
+          mb: 6,
+          maxWidth: 600,
+          mx: 'auto'
+        }}>
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon color="action" />
+                </InputAdornment>
+              ),
+              sx: {
+                borderRadius: 2,
+                backgroundColor: 'background.paper'
+              }
+            }}
+          />
+        </Box>
 
-
-
-        {/* Products Grid */}
+        {/* Products Grid with Fixed Width */}
         {filteredProducts?.length === 0 ? (
-          <div className="text-center py-12">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <h3 className="mt-2 text-lg font-medium text-gray-900">No products found</h3>
-            <p className="mt-1 text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
-          </div>
+          <Box sx={{ 
+            textAlign: 'center', 
+            py: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}>
+            <SentimentDissatisfiedIcon sx={{ fontSize: 60, color: 'text.disabled', mb: 2 }} />
+            <Typography variant="h6" gutterBottom>
+              No products found
+            </Typography>
+            <Typography color="text.secondary">
+              Try adjusting your search or filter to find what you're looking for.
+            </Typography>
+          </Box>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: 3, 
+              justifyContent: 'center' 
+            }}
+          >
             {filteredProducts?.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <Box 
+                key={product.id} 
+                sx={{ 
+                  width: 280, // fixed width
+                  flexShrink: 0 
+                }}
+              >
+                <ProductCard 
+                  product={product} 
+                  sx={{ height: '100%' }} 
+                />
+              </Box>
             ))}
-          </div>
+          </Box>
         )}
-
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
 }
