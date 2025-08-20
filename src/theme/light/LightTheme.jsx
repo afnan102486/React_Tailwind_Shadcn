@@ -65,7 +65,7 @@ const lightTheme = createTheme({
     },
     button: {
       textTransform: 'none',  // Buttons won't be uppercase
-      fontWeight: 500
+      fontWeight: 500,
     }
   },
   shape: {

@@ -1,36 +1,24 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, decrementQuantity, incrementQuantity, clearCart } from '../features/cart/cartSlice';
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  IconButton,
-  Paper,
-  Typography,
-  Stack,
-  TextField,
-  Avatar,
-  Container
-} from '@mui/material';
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromCart, decrementQuantity, incrementQuantity, clearCart } from "../features/cart/cartSlice";
+import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, IconButton, Paper, Typography, Stack, TextField, Avatar, Container } from "@mui/material";
 import {
   ShoppingCart as ShoppingCartIcon,
   Delete as DeleteIcon,
   Remove as RemoveIcon,
   Add as AddIcon,
   ArrowBack as ArrowBackIcon,
-  Image as ImageIcon
-} from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+  Image as ImageIcon,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -41,17 +29,21 @@ export default function Cart() {
               Your Shopping Cart
             </Typography>
           }
-          subheader={`${cartItems.length} ${cartItems.length === 1 ? 'item' : 'items'}`}
+          subheader={`${cartItems.length} ${
+            cartItems.length === 1 ? "item" : "items"
+          }`}
           sx={{
-            bgcolor: 'primary.main',
-            color: 'primary.contrastText',
-            py: 3
+            bgcolor: "primary.main",
+            color: "primary.contrastText",
+            py: 3,
           }}
         />
 
         {cartItems.length === 0 ? (
-          <CardContent sx={{ textAlign: 'center', py: 8 }}>
-            <ShoppingCartIcon sx={{ fontSize: 60, color: 'text.disabled', mb: 2 }} />
+          <CardContent sx={{ textAlign: "center", py: 8 }}>
+            <ShoppingCartIcon
+              sx={{ fontSize: 60, color: "text.disabled", mb: 2 }}
+            />
             <Typography variant="h5" gutterBottom>
               Your cart is empty
             </Typography>
@@ -71,7 +63,7 @@ export default function Cart() {
           </CardContent>
         ) : (
           <>
-            <CardContent sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <CardContent sx={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 onClick={() => dispatch(clearCart())}
                 variant="contained"
@@ -92,26 +84,36 @@ export default function Cart() {
                       <Paper
                         variant="outlined"
                         sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
                           height: 120,
-                          bgcolor: 'background.default'
+                          bgcolor: "background.default",
                         }}
                       >
                         {item.image ? (
                           <img
                             src={item.image}
                             alt={item.title}
-                            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                            style={{
+                              maxWidth: "100%",
+                              maxHeight: "100%",
+                              objectFit: "contain",
+                            }}
                           />
                         ) : (
-                          <ImageIcon sx={{ fontSize: 60, color: 'text.disabled' }} />
+                          <ImageIcon
+                            sx={{ fontSize: 60, color: "text.disabled" }}
+                          />
                         )}
                       </Paper>
                     </Grid>
                     <Grid item xs={12} sm={9} md={10}>
-                      <Stack direction="row" justifyContent="space-between">
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        gap={4}
+                      >
                         <Typography variant="h6" component="h2">
                           {item.title}
                         </Typography>
@@ -122,7 +124,12 @@ export default function Cart() {
                       <Typography variant="body2" color="text.secondary">
                         ${item.price.toFixed(2)} each
                       </Typography>
-                      <Stack direction="row" alignItems="center" spacing={2} mt={2}>
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        spacing={2}
+                        mt={2}
+                      >
                         <Stack direction="row" alignItems="center" spacing={1}>
                           <IconButton
                             onClick={() => dispatch(decrementQuantity(item.id))}
@@ -136,8 +143,8 @@ export default function Cart() {
                             size="small"
                             sx={{ width: 60 }}
                             inputProps={{
-                              style: { textAlign: 'center' },
-                              readOnly: true
+                              style: { textAlign: "center" },
+                              readOnly: true,
                             }}
                           />
                           <IconButton
@@ -164,7 +171,7 @@ export default function Cart() {
               </Box>
             ))}
 
-            <CardContent sx={{ bgcolor: 'background.paper' }}>
+            <CardContent sx={{ bgcolor: "background.paper" }}>
               <Stack spacing={2}>
                 <Stack direction="row" justifyContent="space-between">
                   <Typography variant="h6">Subtotal</Typography>
@@ -184,12 +191,19 @@ export default function Cart() {
                 >
                   Checkout
                 </Button>
-                <Box sx={{ textAlign: 'center', pt: 2 }}>
+                <Box sx={{ textAlign: "center", pt: 2 }}>
                   <Button
                     component={Link}
                     to="/"
                     color="primary"
                     startIcon={<ArrowBackIcon />}
+                    sx={{
+                      color: "primary.main",
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "primary.dark",
+                      },
+                    }}
                   >
                     Continue Shopping
                   </Button>

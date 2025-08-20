@@ -28,7 +28,6 @@ export default function Navbar({ mode, toggleTheme }) {
       }}
     >
       <Toolbar sx={{ maxWidth: 'lg', mx: 'auto', width: '100%', px: { xs: 2, sm: 3 } }}>
-        {/* Logo/Brand */}
         <StyledLink to="/">
           <StoreIcon sx={{ mr: 1, fontSize: '2rem' }} />
           <Typography 
@@ -43,7 +42,7 @@ export default function Navbar({ mode, toggleTheme }) {
           </Typography>
         </StyledLink>
 
-        <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
+        <Box sx={{ flexGrow: 1 }} />
 
         {/* Theme Toggle */}
         <IconButton color="inherit" onClick={toggleTheme}>
