@@ -1,124 +1,59 @@
-import * as React from 'react';
-import { Button, ButtonGroup, IconButton } from '@mui/material';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { PhotoCamera } from '@mui/icons-material';
-
+import { Button, IconButton } from "@mui/material";
 
 export function MyButton({
-  type = "button", 
-  variant = "contained",
-  color = "primary",
-  size = "medium",
-  disabled = false,
+  btnType, // mode selector for switch
+  type,    // HTML button type (button, submit, reset)
+  variant,
+  color,
+  size,
+  disabled,
   startIcon,
   endIcon,
-  loading = false,
+  loading,
   href,
   component,
   onClick,
-  icon, 
-  groupButtons = [], 
-  orientation = "horizontal",
-  disableElevation = false,
-  accept = "image/*", 
-  label = "Button",
-  children
+  icon,
+  groupButtons,
+  orientation,
+  disableElevation,
+  accept,
+  label,
+  children,
+  ...rest
 }) {
-  if (type === "icon") {
-    return (
-      <IconButton
-        color={color}
-        size={size}
-        disabled={disabled}
-        onClick={onClick}
-      >
-        {icon}
-      </IconButton>
-    );
-  }
+  switch (btnType) {
+    case "icon":
+      return (
+        <IconButton
+          color={color}
+          size={size}
+          disabled={disabled}
+          onClick={onClick}
+          type={type}
+          {...rest}
+        >
+          {icon}
+        </IconButton>
+      );
 
-  if (type === "upload") {
-    return (
-      <>
-        <input
-          accept={accept}
-          style={{ display: 'none' }}
-          id="upload-btn"
-          type="file"
-        />
-        <label htmlFor="upload-btn">
-          <Button
-            variant={variant}
-            color={color}
-            size={size}
-            disabled={disabled}
-            startIcon={startIcon}
-            endIcon={endIcon}
-            component="span"
-          >
-            {children || label}
-          </Button>
-        </label>
-      </>
-    );
+    default:
+      return (
+        <Button
+          variant={variant}
+          color={color}
+          size={size}
+          disabled={disabled}
+          startIcon={startIcon}
+          endIcon={endIcon}
+          onClick={onClick}
+          href={href}
+          type={type}
+          component={component}
+          {...rest}
+        >
+          {children || label}
+        </Button>
+      );
   }
-
-  if (type === "group") {
-    return (
-      <ButtonGroup
-        variant={variant}
-        color={color}
-        size={size}
-        orientation={orientation}
-        disableElevation={disableElevation}
-      >
-        {groupButtons.map((btn, i) => (
-          <Button
-            key={i}
-            startIcon={btn.startIcon}
-            endIcon={btn.endIcon}
-            onClick={btn.onClick}
-            disabled={btn.disabled}
-            href={btn.href}
-          >
-            {btn.label}
-          </Button>
-        ))}
-      </ButtonGroup>
-    );
-  }
-
-  if (loading) {
-    return (
-      <LoadingButton
-        variant={variant}
-        color={color}
-        size={size}
-        disabled={disabled}
-        startIcon={startIcon}
-        endIcon={endIcon}
-        loading={loading}
-        onClick={onClick}
-        href={href}
-      >
-        {children || label}
-      </LoadingButton>
-    );
-  }
-
-  return (
-    <Button
-      variant={variant}
-      color={color}
-      size={size}
-      disabled={disabled}
-      startIcon={startIcon}
-      endIcon={endIcon}
-      onClick={onClick}
-      href={href}
-      component={component}
-    >
-      {children || label}
-    </Button>
-  );
 }

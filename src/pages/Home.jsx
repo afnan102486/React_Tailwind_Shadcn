@@ -57,6 +57,7 @@ export default function Home() {
               fontWeight: 'bold',
               mb: 2,
               fontSize: { xs: '2rem', sm: '3rem', lg: '3.5rem' }
+              
             }}
           >
             Discover Amazing Products
