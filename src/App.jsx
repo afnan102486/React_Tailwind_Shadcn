@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import InstallPrompt from './InstallPrompt.jsx';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
@@ -44,6 +44,7 @@ function App() {
           pauseOnHover
           theme={mode} // Match toast theme to app theme
         />
+        <InstallPrompt />
       </BrowserRouter>
     </ThemeProvider>
   );
